@@ -3,14 +3,14 @@
 Build voice assistants with **Raspberry Pi Zero 2 W** and **ReSpeaker 2-Mic Pi HAT** for Home Assistant or standalone use.
 
 This repository serves two purposes:
-1. **Claude Skill** - Drop into Claude Desktop/Code for AI-assisted setup
+1. **AI Agent Skill** - Drop into any AI assistant (Claude, opencode, Codex, Conductor, Cursor, etc.) for AI-assisted setup
 2. **Standalone Documentation** - Complete guides you can follow manually
 
 ## What's Inside
 
 | File | Purpose |
 |------|---------|
-| `SKILL.md` | Main entry point for Claude AI |
+| `SKILL.md` | Main entry point for AI assistants |
 | `references/official-docs/` | Verbatim documentation from Seeed Studio and Wyoming Satellite |
 | `references/wyoming-setup.md` | Quick guide: Home Assistant voice satellite |
 | `references/picovoice-setup.md` | Quick guide: Local wake word with Picovoice |
@@ -89,36 +89,62 @@ Get your free access key at [Picovoice Console](https://console.picovoice.ai/).
 
 See `references/picovoice-setup.md` for complete setup including LED feedback and Speech-to-Intent.
 
-## Using as Claude Skill
+## Using with AI Assistants
 
-### Claude Desktop
+This repository works with any AI assistant that supports skill/context injection. Here are examples for popular tools:
 
+### Claude (Desktop / Code / API)
+
+**macOS:**
 ```bash
-# macOS
 mkdir -p ~/Library/Application\ Support/Claude/skills
 cp -r rpi-voice-satellite ~/Library/Application\ Support/Claude/skills/
+```
 
-# Linux
+**Linux:**
+```bash
 mkdir -p ~/.config/claude/skills
 cp -r rpi-voice-satellite ~/.config/claude/skills/
 ```
 
-### Claude Code
+### opencode
 
 ```bash
-# Project-level (recommended)
-mkdir -p .claude/skills
-cp -r rpi-voice-satellite .claude/skills/
-
-# Or global
-mkdir -p ~/.claude/skills
-cp -r rpi-voice-satellite ~/.claude/skills/
+mkdir -p ~/.agents/skills/
+cp -r rpi-voice-satellite ~/.agents/skills/
+ln -s ~/.agents/skills/rpi-voice-satellite ~/.config/opencode/skills/rpi-voice-satellite
 ```
 
-Then ask Claude things like:
+### Codex
+
+```bash
+# Codex supports MCP servers and custom instructions
+# Copy the skill to your Codex context directory:
+mkdir -p ~/.codex/skills
+cp -r rpi-voice-satellite ~/.codex/skills/
+
+# Or reference SKILL.md directly in your Codex project
+```
+
+### Conductor
+
+```bash
+# Conductor (if using local skill directories):
+mkdir -p ~/.conductor/skills
+cp -r rpi-voice-satellite ~/.conductor/skills/
+```
+
+### Other Tools
+
+Most AI coding assistants (Cursor, GitHub Copilot, Windsurf, etc.) support loading context from markdown files. Point your tool to `SKILL.md` as the primary context file, or clone the repository to your tool's skills directory.
+
+### Usage Examples
+
+Once loaded, ask your AI assistant things like:
 - "Help me set up my ReSpeaker 2-Mic HAT"
 - "The audio isn't working on my Pi Zero voice satellite"
 - "How do I add LED feedback to Wyoming Satellite?"
+- "Create a Python script for LED control"
 
 ## Troubleshooting
 
