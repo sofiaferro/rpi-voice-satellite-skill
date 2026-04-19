@@ -1,4 +1,4 @@
-# ReSpeaker 2-Mic Pi HAT Voice Satellite
+# ReSpeaker 2-Mic Pi HAT Voice Satellite Skill
 
 Build voice assistants with **Raspberry Pi Zero 2 W** and **ReSpeaker 2-Mic Pi HAT** for Home Assistant or standalone use.
 
